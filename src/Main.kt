@@ -111,6 +111,8 @@ fun main() {
         )
         kodee.animation.queue.addPropertyAnimation(myAnimation)
     }
+
+
     pet.doActivity(BakeCookies())
     pet.doActivity(Running())
     pet.doActivity(PlayFootball())
@@ -122,6 +124,14 @@ fun main() {
     stage.addActor(runningButton)
     stage.addActor(footballButton)
     stage.addActor(football)
+}
+
+fun populateStage(n: Int, s: Stage, setUpActor: (Int, Actor) -> Actor) {
+    for (index in 1..n) {
+        val actor = Actor()
+        val result = setUpActor(index, actor)
+        s.addActor(result)
+    }
 }
 
 fun lifeGoesOn(pet: Pet, energyBar: Actor) {
@@ -171,6 +181,8 @@ fun setupClickableItem(actor: Actor, item: Item, pet: Pet, energyBar: Actor, hap
         }
     }
 }
+
+
 fun updateUI(pet: Pet, energyBar: Actor, happinessBar: Actor) {
     energyBar.text.content    = "Energy: ${pet.health.energy}"
     happinessBar.text.content = "Happiness: ${pet.happiness}"
